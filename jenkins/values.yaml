@@ -39,7 +39,7 @@ master:
     - docker-commons:1.17
     - docker-workflow:1.24
     - job-dsl:1.77
-    # - configuration-as-code:1.45
+    - configuration-as-code:1.45
     - jdk-tool:1.4
   JCasC:
     enabled: true

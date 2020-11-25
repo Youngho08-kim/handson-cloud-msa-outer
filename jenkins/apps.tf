@@ -4,9 +4,9 @@ data "local_file" "helm_chart_values" {
 
 resource "helm_release" "jenkins" {
   name       = "jenkins"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-  version    = "2.5.4"
+  version    = "2.17.1"
   timeout    = 1200
 
   values = [data.local_file.helm_chart_values.content]

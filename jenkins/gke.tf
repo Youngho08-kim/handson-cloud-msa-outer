@@ -5,7 +5,7 @@ module "jenkins-gke" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
   version                  = "~> 7.0"
   project_id               = module.enables-google-apis.project_id
-  name                     = "jenkins"
+  name                     = "jenkins-13"
   regional                 = false
   region                   = var.region
   zones                    = var.zones
