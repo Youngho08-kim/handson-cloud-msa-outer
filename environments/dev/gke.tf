@@ -3,7 +3,7 @@ resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-${var.member_id}-dev"
   location = var.region
   node_locations = var.zones
-
+  provider = google-beta
   remove_default_node_pool = true
   initial_node_count       = 1
 
@@ -16,6 +16,12 @@ resource "google_container_cluster" "primary" {
 
     client_certificate_config {
       issue_client_certificate = false
+    }
+  }
+  addons_config {
+    istio_config {
+      disabled = false
+      auth     = "AUTH_MUTUAL_TLS"
     }
   }
 }
