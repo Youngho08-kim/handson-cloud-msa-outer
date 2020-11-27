@@ -70,7 +70,7 @@ resource "google_container_node_pool" "primary_nodes" {
   }
 
   autoscaling {
-    max_node_count = 4 
+    max_node_count = 10
     min_node_count = 2
   }
 }
