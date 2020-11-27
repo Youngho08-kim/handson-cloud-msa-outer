@@ -3,7 +3,7 @@ resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-${var.member_id}-dev"
   location = var.region
   node_locations = var.zones
-
+  provider = google-beta
   remove_default_node_pool = true
   initial_node_count       = 1
 
@@ -16,6 +16,12 @@ resource "google_container_cluster" "primary" {
 
     client_certificate_config {
       issue_client_certificate = false
+    }
+  }
+  addons_config {
+    istio_config {
+      disabled = false
+      auth     = "AUTH_MUTUAL_TLS"
     }
   }
 }
@@ -50,8 +56,18 @@ resource "google_container_node_pool" "primary_nodes" {
 module "gke_auth" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/auth"
   version = "~> 9.1"
-
+ 
   project_id   = var.project_id
   cluster_name = google_container_cluster.primary.name
   location     = google_container_cluster.primary.location
+}
+ 
+resource "kubernetes_namespace" "default" {
+    metadata {
+        annotations      = {}
+        labels           = {
+          istio-injection = "enabled"
+        }
+        name             = "default"
+    }
 }

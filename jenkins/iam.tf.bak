@@ -16,7 +16,9 @@ module "workload_identity" {
   source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
   version             = "~> 7.0"
   project_id          = module.enables-google-apis.project_id
-  name                = "jenkins-wi-${module.jenkins-gke.name}-13"
+  name                = "jenkins-wi-${module.jenkins-gke.name}-MEMBER_ID"
+  namespace           = "default"
+  use_existing_k8s_sa = false
 }
 
 # enable GSA to add and delete pods for jenkins builders

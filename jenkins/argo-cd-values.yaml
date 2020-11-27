@@ -1,20 +1,20 @@
 ---
-  controller: 
-    metrics: 
+  controller:
+    metrics:
       enabled: true
-      serviceMonitor: 
+      serviceMonitor:
         selector: true
-  server: 
-    service: 
+  server:
+    service:
       type: "LoadBalancer"
     extraArgs:
     - --insecure
-  repoServer: 
-    metrics: 
+  repoServer:
+    metrics:
       enabled: true
-      serviceMonitor: 
+      serviceMonitor:
         selector: true
-  dex: 
+  dex:
     enabled: true
-  redis: 
+  redis:
     enabled: true
