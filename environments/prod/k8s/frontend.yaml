@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-frontend-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-frontend
+  template:
+    metadata:
+      labels:
+        app: eshop-frontend
+        version: v1
+    spec:
+      containers:
+        - name: eshop-frontend
+          image:  gcr.io/architect-certification-289902/13/eshop-frontend@sha256:52690544caf852298904470c6ef92c15cf9696589afda3e05b3e14061009c63b
+          ports:
+          - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-frontend-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-frontend
+  template:
+    metadata:
+      labels:
+        app: eshop-frontend
+        version: v2
+    spec:
+      containers:
+        - name: eshop-frontend
+          image: gcr.io/architect-certification-289902/13/eshop-frontend@sha256:47bd451be06db9ae3c436d485b8e8373a40ac86749369820482a72a213be3fd7
+          ports:
+          - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: eshop-frontend
+  ports:
+  - port: 8080
