@@ -112,13 +112,13 @@ spec:
         subset: v1
         port: 
           number: 8080
-      weight: 50
+      weight: 0
     - destination:
         host: eshop-frontend
         subset: v2
         port:
           number: 8080
-      weight: 50
+      weight: 100
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
