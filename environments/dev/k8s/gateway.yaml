@@ -110,7 +110,7 @@ spec:
     - destination:
         host: eshop-frontend
         subset: v1
-        port:
+        port: 
           number: 8080
       weight: 50
     - destination:
@@ -119,8 +119,6 @@ spec:
         port:
           number: 8080
       weight: 50
-
-
   ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
