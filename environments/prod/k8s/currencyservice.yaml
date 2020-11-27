@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: eshop-currencyservice
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: eshop-currencyservice
